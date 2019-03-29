@@ -4,7 +4,7 @@ File		：MR2-V1.0
 
 Author	: 刘健恒
 
-E-mail	：刘健恒@stu.hit.edu.cn
+E-mail	：jianhengLiu@stu.hit.edu.cn
 
 ## 更新说明
 
