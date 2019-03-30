@@ -45,7 +45,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-int angleBar1=0;
+int angleBar1=120;
 int angleBar2=190;
 /* USER CODE END PTD */
 
@@ -186,16 +186,16 @@ void LEDShow(void const * argument)
 void MR1MainTask(void const * argument)
 {
     /* USER CODE BEGIN MR1MainTask */
-
+angleLast1=angleBar1;
+	angleLast2=angleBar2;
     /* Infinite loop */
     for(;;)
     {
-			action_Bar2(190);
 			
         if(MR2.Target.YSpeed>1000)
             action_forward();
 				else if(MR2.Target.YSpeed<-1000)
-            action_backward();
+            action_leap();
         else if(MR2.Target.XSpeed>1000)
             action_turnR();
         else if(MR2.Target.XSpeed<-1000)
@@ -238,8 +238,8 @@ void MR1MainTask(void const * argument)
             action_Bar2(angleBar2);
         }
 				else
-					//action_still();
-					action_leap();
+					action_still();
+					
     }
     /* USER CODE END MR1MainTask */
 }

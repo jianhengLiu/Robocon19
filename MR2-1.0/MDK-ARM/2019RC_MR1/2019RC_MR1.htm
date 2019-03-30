@@ -3,7 +3,7 @@
 <title>Static Call Graph - [2019RC_MR1\2019RC_MR1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image 2019RC_MR1\2019RC_MR1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Mar 29 10:59:12 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sat Mar 30 01:39:36 2019
 <BR><P>
 <H3>Maximum Stack Usage =        256 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -689,10 +689,12 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnR
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnL
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_backward
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnR
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnL
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar2
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
 </UL>
 
@@ -737,9 +739,9 @@ Global Symbols
 <P><STRONG><a name="[97]"></a>HAL_Init</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, stm32f4xx_hal.o(i.HAL_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = HAL_Init &rArr; HAL_InitTick &rArr; HAL_TIM_Base_Init &rArr; TIM_Base_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriorityGrouping
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriorityGrouping
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -804,8 +806,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9c]"></a>HAL_RCC_GetPCLK1Freq</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f4xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq))
-<BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<BR><BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 </UL>
 
 <P><STRONG><a name="[df]"></a>HAL_RCC_GetPCLK2Freq</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f4xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq))
@@ -875,13 +877,13 @@ Global Symbols
 <P><STRONG><a name="[a5]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 358 bytes, Stack size 16 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HAL_TIM_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_PulseFinishedCallback
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_DelayElapsedCallback
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_CaptureCallback
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_CommutationCallback
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_BreakCallback
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM7_IRQHandler
 </UL>
@@ -902,12 +904,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ae]"></a>HAL_TIM_PWM_ConfigChannel</STRONG> (Thumb, 208 bytes, Stack size 16 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_PWM_ConfigChannel))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_TIM_PWM_ConfigChannel &rArr; TIM_OC2_SetConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_TIM_PWM_ConfigChannel &rArr; TIM_OC4_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC2_SetConfig
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC4_SetConfig
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC4_SetConfig
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC3_SetConfig
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC1_SetConfig
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC2_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM5_Init
@@ -917,8 +919,8 @@ Global Symbols
 <P><STRONG><a name="[b3]"></a>HAL_TIM_PWM_Init</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_PWM_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_TIM_PWM_Init &rArr; TIM_Base_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_MspInit
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_MspInit
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM5_Init
@@ -960,8 +962,8 @@ Global Symbols
 <P><STRONG><a name="[b8]"></a>HAL_UART_Init</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, stm32f4xx_hal_uart.o(i.HAL_UART_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
+<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART6_UART_Init
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART1_UART_Init
@@ -1012,16 +1014,16 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_1.o(.constdata)
 </UL>
-<P><STRONG><a name="[6e]"></a>MR1MainTask</STRONG> (Thumb, 208 bytes, Stack size 0 bytes, freertos_1.o(i.MR1MainTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = MR1MainTask &rArr; action_turnR &rArr; servoLeg_angle
+<P><STRONG><a name="[6e]"></a>MR1MainTask</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, freertos_1.o(i.MR1MainTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = MR1MainTask &rArr; action_leap &rArr; action_forward &rArr; servoLeg_angle
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnR
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnL
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_backward
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar2
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
+<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnR
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnL
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_still
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar2
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos_1.o(.constdata)
@@ -1224,45 +1226,59 @@ Global Symbols
 
 <P><STRONG><a name="[133]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[c5]"></a>action_Bar1</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, action.o(i.action_Bar1))
-<BR><BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoBar1_angle
-</UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
-</UL>
-
-<P><STRONG><a name="[c0]"></a>action_Bar2</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, action.o(i.action_Bar2))
-<BR><BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoBar2_angle
-</UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
-</UL>
-
-<P><STRONG><a name="[c2]"></a>action_backward</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_backward))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = action_backward &rArr; servoLeg_angle
+<P><STRONG><a name="[c4]"></a>action_Bar1</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, action.o(i.action_Bar1))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = action_Bar1 &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoLeg_angle
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoBar1_angle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_still
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
 </UL>
 
-<P><STRONG><a name="[c1]"></a>action_forward</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_forward))
+<P><STRONG><a name="[c5]"></a>action_Bar2</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, action.o(i.action_Bar2))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = action_Bar2 &rArr; HAL_Delay
+</UL>
+<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoBar2_angle
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_still
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
+</UL>
+
+<P><STRONG><a name="[c0]"></a>action_forward</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_forward))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = action_forward &rArr; servoLeg_angle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoLeg_angle
 </UL>
+<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
+</UL>
+
+<P><STRONG><a name="[c1]"></a>action_leap</STRONG> (Thumb, 504 bytes, Stack size 48 bytes, action.o(i.action_leap))
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = action_leap &rArr; action_forward &rArr; servoLeg_angle
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoLeg_angle
+</UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
 </UL>
 
-<P><STRONG><a name="[c6]"></a>action_leap</STRONG> (Thumb, 30 bytes, Stack size 24 bytes, action.o(i.action_leap))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = action_leap &rArr; servoLeg_angle
+<P><STRONG><a name="[c6]"></a>action_still</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, action.o(i.action_still))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = action_still &rArr; action_Bar2 &rArr; HAL_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoLeg_angle
+<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar2
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servoLeg_angle
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
 </UL>
 
-<P><STRONG><a name="[c4]"></a>action_turnL</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_turnL))
+<P><STRONG><a name="[c3]"></a>action_turnL</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_turnL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = action_turnL &rArr; servoLeg_angle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -1271,7 +1287,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MR1MainTask
 </UL>
 
-<P><STRONG><a name="[c3]"></a>action_turnR</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_turnR))
+<P><STRONG><a name="[c2]"></a>action_turnR</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, action.o(i.action_turnR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = action_turnR &rArr; servoLeg_angle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -1377,21 +1393,21 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e0]"></a>servoBar1_angle</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, servo.o(i.servoBar1_angle))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
+<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar1
 </UL>
 
 <P><STRONG><a name="[e1]"></a>servoBar2_angle</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, servo.o(i.servoBar2_angle))
-<BR><BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar2
+<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_Bar2
 </UL>
 
 <P><STRONG><a name="[e2]"></a>servoLeg_angle</STRONG> (Thumb, 174 bytes, Stack size 28 bytes, servo.o(i.servoLeg_angle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = servoLeg_angle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnR
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnL
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_backward
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnR
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_turnL
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_still
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_leap
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;action_forward
 </UL>
 
 <P><STRONG><a name="[e3]"></a>servo_init</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, servo.o(i.servo_init))

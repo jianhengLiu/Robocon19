@@ -42,7 +42,7 @@ typedef enum
 	TurnRight,
 	CrossHill,
 	CrossLine,
-	ClimbHill,
+	ClimbHill
 }WorkState_e;
 
 /**
