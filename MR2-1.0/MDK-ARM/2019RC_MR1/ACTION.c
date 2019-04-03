@@ -2,7 +2,7 @@
 #include "SERVO.h"
 #include "stm32f4xx_hal.h"
 
-
+/*
 void action_Bar1(int angle)
 {
     while (angle > angleLast1)
@@ -33,41 +33,64 @@ void action_Bar2(int angle)
         servoBar2_angle(angleLast2);
         HAL_Delay(20);
     }
-}
+}*/
 
 void action_still(void)
 {
-  servoLeg_angle(110,130,130,110,40,40,40,40);  
-	//servoLeg_angle(85,85,85,85,40,40,40,40);
-    action_Bar1(120);
-    action_Bar2(190);
+  //servoLeg_angle(110,130,130,110,50,50,50,50);  
+	servoLeg_angle(85,85,85,85,50,50,50,50);
+  //  action_Bar1(120);
+   // action_Bar2(190);
 }
 
 void action_forward(void)
 {
-    servoLeg_angle(60,60,110,110,40,60,40,60);
+    servoLeg_angle(60,60,110,110,50,70,50,70);
     HAL_Delay(300);
-    servoLeg_angle(60,60,110,110,40,40,40,40);
+    servoLeg_angle(60,60,110,110,50,50,50,50);
     HAL_Delay(200);
-    servoLeg_angle(110,110,60,60,60,40,60,40);
+    servoLeg_angle(110,110,60,60,70,50,70,50);
     HAL_Delay(300);
-    servoLeg_angle(110,110,60,60,40,40,40,40);
+    servoLeg_angle(110,110,60,60,50,50,50,50);
     HAL_Delay(200);
 }
 
 void action_backward(void)
 {
-    servoLeg_angle(60,60,110,110,60,40,60,40);
+    servoLeg_angle(60,60,110,110,70,50,70,50);
     HAL_Delay(300);
-    servoLeg_angle(60,60,110,110,40,40,40,40);
+    servoLeg_angle(60,60,110,110,50,50,50,50);
     HAL_Delay(200);
-    servoLeg_angle(110,110,60,60,40,60,40,60);
+    servoLeg_angle(110,110,60,60,50,70,50,70);
     HAL_Delay(300);
-    servoLeg_angle(110,110,60,60,40,40,40,40);
+    servoLeg_angle(110,110,60,60,50,50,50,50);
     HAL_Delay(200);
-
 }
 
+void action_leftward(void)
+{
+    servoLeg_angle(60,110,60,110,70,50,70,50);
+    HAL_Delay(300);
+    servoLeg_angle(60,110,60,110,50,50,50,50);
+    HAL_Delay(200);
+    servoLeg_angle(110,60,110,60,50,70,50,70);
+    HAL_Delay(300);
+    servoLeg_angle(110,60,110,60,50,50,50,50);
+    HAL_Delay(200);
+}
+
+void action_rightward(void)
+{
+    servoLeg_angle(60,110,60,110,50,70,50,70);
+    HAL_Delay(300);
+    servoLeg_angle(60,110,60,110,50,50,50,50);
+    HAL_Delay(200);
+    servoLeg_angle(110,60,110,60,70,50,70,50);
+    HAL_Delay(300);
+    servoLeg_angle(110,60,110,60,50,50,50,50);
+    HAL_Delay(200);
+}
+/*
 void action_uphill(int n)
 {
     for(int i = 0; i<n; i++)
@@ -101,11 +124,11 @@ void action_downhill(int n)
 }
 void action_leap(void)
 {
-    servoLeg_angle(110,130,130,110,40,40,40,40);//初始姿态
+    servoLeg_angle(110,130,130,110,50,50,50,50);//初始姿态
     action_Bar1(120);
     //action_Bar1(190);
     HAL_Delay(500);
-	servoLeg_angle(110,130,130,110,40,130,40,40);
+	servoLeg_angle(110,130,130,110,40,130,40,50);
 	HAL_Delay(400);
 	servoLeg_angle(110,40,130,110,40,130,40,40);
 	HAL_Delay(500);
@@ -143,7 +166,7 @@ void action_leap(void)
 	servoLeg_angle(160,110,60,120,100,60,60,100);
 	HAL_Delay(400);
 	
-   /* servoLeg_angle(110,130,130,60,40,120,40,60);//右上抬
+    servoLeg_angle(110,130,130,60,40,120,40,60);//右上抬
     HAL_Delay(900);
     servoLeg_angle(110,60,130,60,40,120,40,60);//右上前
     HAL_Delay(900);
@@ -176,27 +199,27 @@ void action_leap(void)
     servoLeg_angle(110,60,110,160,100,95,95,100);
     HAL_Delay(200);
 
-    action_downhill(3);*/
-}
+    action_downhill(3);
+}*/
 void action_turnL(void)
 {
-    servoLeg_angle(100,100,100,100,55,40,55,40);// 140, 20, 105, 75, 140, 20, 105);//??.5.??.1.????45,??.8??.4??45
+    servoLeg_angle(100,100,100,100,65,50,65,50);// 140, 20, 105, 75, 140, 20, 105);//??.5.??.1.????45,??.8??.4??45
     HAL_Delay(300);
-    servoLeg_angle(100,100,100,100,40,40,40,40);//?????
+    servoLeg_angle(100,100,100,100,50,50,50,50);//?????
     HAL_Delay(200);
-    servoLeg_angle(55,55,55,55,40,55,40,55);//??.5.??.1.??45,??.8.??.4.????45
+    servoLeg_angle(55,55,55,55,50,65,50,65);//??.5.??.1.??45,??.8.??.4.????45
     HAL_Delay(300);
-    servoLeg_angle(55,55,55,55,40,40,40,40);//?????
+    servoLeg_angle(55,55,55,55,50,50,50,50);//?????
     HAL_Delay(200);
 }
 void action_turnR(void)
 {
-    servoLeg_angle(55,55,55,55,55,40,55,40);//??.5.??.1.??45,??.8.??.4.????45
+    servoLeg_angle(55,55,55,55,65,50,65,50);//??.5.??.1.??45,??.8.??.4.????45
     HAL_Delay(300);
-    servoLeg_angle(55,55,55,55,40,40,40,40);//?????
+    servoLeg_angle(55,55,55,55,50,50,50,50);//?????
     HAL_Delay(200);
-    servoLeg_angle(100,100,100,100,40,55,40,55);// 140, 20, 105, 75, 140, 20, 105);//??.5.??.1.????45,??.8??.4??45
+    servoLeg_angle(100,100,100,100,50,65,50,65);// 140, 20, 105, 75, 140, 20, 105);//??.5.??.1.????45,??.8??.4??45
     HAL_Delay(300);
-    servoLeg_angle(100,100,100,100,40,40,40,40);//?????
+    servoLeg_angle(100,100,100,100,50,50,50,50);//?????
     HAL_Delay(200);
 }

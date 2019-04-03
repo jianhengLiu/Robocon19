@@ -47,6 +47,8 @@
 /* USER CODE BEGIN PTD */
 int angleBar1=120;
 int angleBar2=190;
+int servo1;
+int servo2=1000;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -186,33 +188,37 @@ void LEDShow(void const * argument)
 void MR1MainTask(void const * argument)
 {
     /* USER CODE BEGIN MR1MainTask */
-angleLast1=angleBar1;
-	angleLast2=angleBar2;
+//angleLast1=angleBar1;
+//	angleLast2=angleBar2;
     /* Infinite loop */
     for(;;)
     {
-			
         if(MR2.Target.YSpeed>1000)
             action_forward();
-				else if(MR2.Target.YSpeed<-1000)
-            action_leap();
+        else if(MR2.Target.YSpeed<-1000)
+            action_backward();
         else if(MR2.Target.XSpeed>1000)
-            action_turnR();
+            action_rightward();
         else if(MR2.Target.XSpeed<-1000)
+            action_leftward();
+        else if(MR2.Target.ASpeed>1000)
+            action_turnR();
+        else if(MR2.Target.ASpeed<-1000)
             action_turnL();
-        else if((MR2.Target.BSpeed>1000)||(MR2.Target.BSpeed<-1000))
+
+        /*else if((MR2.Target.BSpeed>1000)||(MR2.Target.BSpeed<-1000))
         {
             if (MR2.Target.BSpeed>1000)
-						{
+        				{
                 ++angleBar1;
-							HAL_Delay(20);
-						}
+        					HAL_Delay(20);
+        				}
             else
-						{
-							--angleBar1;
-							HAL_Delay(20);
-						}
-                
+        				{
+        					--angleBar1;
+        					HAL_Delay(20);
+        				}
+
             if (angleBar1>135)
                 angleBar1=135;
             else if (angleBar1<0)
@@ -222,24 +228,24 @@ angleLast1=angleBar1;
         else if((MR2.Target.ASpeed>1000)||(MR2.Target.ASpeed<-1000))
         {
             if (MR2.Target.ASpeed>1000)
-						{
+        				{
                 ++angleBar2;
-							HAL_Delay(20);
-						}
+        					HAL_Delay(20);
+        				}
             else
-						{
+        				{
                 --angleBar2;
-							HAL_Delay(20);
-						}
+        					HAL_Delay(20);
+        				}
             if (angleBar2>190)
                 angleBar2=190;
             else if (angleBar2<0)
                 angleBar2=0;
             action_Bar2(angleBar2);
-        }
-				else
-					action_still();
-					
+        }*/
+        else
+            action_still();
+
     }
     /* USER CODE END MR1MainTask */
 }
