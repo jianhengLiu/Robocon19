@@ -20,7 +20,7 @@ E-mail	：jianhengLiu@stu.hit.edu.cn
 
 ```c
 - 1.本代码基于STM32F427IIH6开发，编译环境为Keil 5，基于FreeRTOS进行开发。
-- 2.本代码只适用于Robocon 2019MR1机器人，不建议用于其他用途
+- 2.本代码只适用于Robocon 2019MR2机器人，不建议用于其他用途
 - 3.本代码以UTF-8格式编码，请勿以ANSI编码形式打开
 - 4.本代码最终解释权归哈尔滨工业大学（深圳）Robocon战队所有
 - Copyright (c) 2019 哈尔滨工业大学（深圳）Robocon战队 版权所有					
