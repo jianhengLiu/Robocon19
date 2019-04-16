@@ -1,0 +1,321 @@
+/**
+  ******************************************************************************
+  * 文件名          : Mission.c
+  * 创建时间        : 2019.02.12
+  * 作者            : 任云帆
+  *-----------------------------------------------------------------------------
+  * 最近修改时间    : 2019.02.15
+  * 修改人          : 任云帆
+  ******************************************************************************
+	*																文件描述																		 *
+	******************************************************************************
+	*	本文件定义了MR1所有工作函数。
+	******************************************************************************
+  * 1.本代码基于STM32F427IIH6开发，编译环境为Keil 5，基于FreeRTOS进行开发。
+  * 2.本代码只适用于Robocon 2019MR1机器人，不建议用于其他用途
+  * 3.本代码以UTF-8格式编码，请勿以ANSI编码形式打开
+  * 4.本代码包含大量中文注释，请仔细通读代码后使用
+  * 5.本代码最终解释权归哈尔滨工业大学（深圳）Robocon战队所有
+  *
+  * Copyright (c) 2019 哈尔滨工业大学（深圳）Robocon战队 版权所有
+  ******************************************************************************
+  */
+#include "tim.h"
+#include "Action.h"
+#include "SendSignal.h"				//使用SendSignal();函数
+#include "MR2Init.h"
+#include <math.h>
+
+
+/**
+* @brief 测试舵机函数
+* @param None
+* @retval None
+*/
+//   +			-        -     +
+void testServos(int mode)
+{
+    /*SendAll(135,135,135,135,
+            135,135,135,135,
+            135,135,135,135);*/
+
+    /*SendAll(155,120,125,135,
+            20,20,90,90,
+            220,220,65,65);//init
+    SendAll(135,135,125,135,
+            30,20,90,100,
+            210,200,55,75);
+    HAL_Delay(300);
+    SendAll(135,135,125,135,
+            20,30,100,90,
+            200,210,75,55);
+    HAL_Delay(300);*/
+
+
+
+    /*SendAll(155,120,125,135,
+            10,10,90,90,
+            200,180,85,65);//OK
+    HAL_Delay(300);
+    SendAll(155,120,125,135,
+            10,10,90,90,
+            190,200,65,85);
+    HAL_Delay(300);*/
+
+
+//    SendAll(0,0,0,0,
+//            -45,-45,-45,-45,
+//            70,70,70,70);//init
+						SendAll(0,0,0,0,
+            -55,-45,-45,-55,
+            90,70,70,90);
+						HAL_Delay(300);
+						SendAll(0,0,0,0,
+            -45,-55,-55,-45,
+            70,90,90,70);
+						HAL_Delay(300);
+    /*SendAll(0,0,0,0,
+            -45,-45,-55,-55,
+            65,45,50,70);
+    HAL_Delay(300);
+    SendAll(0,0,0,0,
+            -45,-45,-55,-55,
+            45,65,70,50);*/
+    HAL_Delay(300);
+
+    /*SendAll(155,120,125,135,
+            40,20,100,80,
+            200,180,85,65);
+    HAL_Delay(400);
+    SendAll(155,120,125,135,
+            20,40,80,100,
+            180,200,65,85);
+    HAL_Delay(400);*/
+
+    /*
+        int pm=1;
+        int testServo = 135;
+        if(mode == 1)
+        {
+            testServo = 0;
+            while(1)
+            {   testServo = testServo+ pm*1;
+                if(testServo > 90)
+                {
+                    testServo = 90;
+                    pm = -pm;
+                }
+                if(testServo < 0)
+                {
+                    testServo = 0;
+                    pm = -pm;
+                }
+                HAL_Delay(20);
+                SendAll(testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo);
+            }
+        }
+        else if (mode == 0)	SendAll(testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo,testServo);
+    */
+
+
+}
+
+/**
+* @brief 减速运动函数
+* @param None
+* @retval None
+*/
+
+void slowMode()
+{
+    float erro[3][4];
+    float Step[3][4];
+    float now[3][4] = {0};
+    for(int i=0; i<4; i++)
+    {
+        erro[0][i] = MR2.TargetPos.Hip[i];
+        erro[1][i] = MR2.TargetPos.Tight[i];
+        erro[2][i] = MR2.TargetPos.Calf[i];
+    }
+
+    for(int i=0; i< 4; i++)
+    {
+        Step[0][i] = erro[0][i] / DIVIDSPEED;
+        Step[1][i] = erro[1][i] / DIVIDSPEED;
+        Step[2][i] = erro[2][i] / DIVIDSPEED;
+
+    }
+
+    for(int i=0; i< 4; i++)
+    {
+        now[0][i] = MR2.LastPos.Hip[i];
+        now[1][i] = MR2.LastPos.Tight[i];
+        now[2][i] = MR2.LastPos.Calf[i];
+
+    }
+
+
+
+    for(int i=0; i<DIVIDSPEED; i++) {
+        for(int j=0; j<4; j++) {
+            now[0][i] += Step[0][i];
+            sendAngle(1,j,now[0][j]);
+
+            now[1][i] += Step[1][i];
+            sendAngle(2,j,now[1][j]);
+
+            now[2][i] += Step[2][i];
+            sendAngle(3,j,now[2][j]);
+        }
+        HAL_Delay(DELAYTIME);
+    }
+
+
+
+    for(int i=0; i<4; i++) {
+        MR2.LastPos.Tight[i] = MR2.TargetPos.Tight[i];
+        MR2.LastPos.Calf[i] = MR2.TargetPos.Calf[i];
+        MR2.LastPos.Hip[i] = MR2.TargetPos.Hip[i];
+
+    }
+
+
+}
+
+
+/**
+* @brief 自动解算函数
+* @param None
+* @retval None
+*/
+
+
+/*
+	步态节律：
+		（1，2，3，4，h，0）
+--》 （1，4，h，x） （2，3，h--，0）
+--》	（1，4，h，x）	（2，3，h，0）
+--》	（1，4，h，x）（2，3，h，0）
+
+一个周期
+（1，4，h，x） （2，3，h，0）
+（1，4，h，0）	（2，3，h，x）
+
+详细分解
+	（2，3，h--，x）
+	（2，3，h，0） （1，4，h，x）
+	（1，4，h--，x）
+	（1，4，h，0）	（2，3，h，x）
+*/
+
+/**
+* @brief 前进函数
+* @param None
+* @retval None
+*/
+void actionForward() {
+	calAngleDouble(0,20,1);
+	calAngleDouble(8,20,2);
+	calAngleDouble(8,20,3);
+	calAngleDouble(0,20,4);
+	SendSignal();
+	HAL_Delay(100);
+	calAngleDouble(8,20,1);
+	calAngleDouble(4,15,2);
+	calAngleDouble(4,15,3);
+	calAngleDouble(8,20,4);
+	SendSignal();
+	HAL_Delay(100);
+	calAngleDouble(8,20,1);
+	calAngleDouble(0,20,2);
+	calAngleDouble(0,20,3);
+	calAngleDouble(8,20,4);
+	SendSignal();
+	HAL_Delay(100);
+	calAngleDouble(4,15,1);
+	calAngleDouble(8,20,2);
+	calAngleDouble(8,20,3);
+	calAngleDouble(4,15,4);
+	SendSignal();
+	HAL_Delay(100);
+
+}
+
+
+/**
+* @brief 计算角转化输出角
+* @param None
+* @retval None
+*/
+void setAngle(int leg)
+{
+    switch(leg) {
+    case 1:
+        MR2.OutPutAngle[leg][0] = T10 + MR2.Angle[leg][0];
+        MR2.OutPutAngle[leg][1] = C10 + MR2.Angle[leg][1];
+        break;
+    case 2:
+        MR2.OutPutAngle[leg][0] = T20 - MR2.Angle[leg][0];
+        MR2.OutPutAngle[leg][1] = C20 - MR2.Angle[leg][1];
+        break;
+    case 3:
+        MR2.OutPutAngle[leg][0] = T30 + MR2.Angle[leg][0];
+        MR2.OutPutAngle[leg][1] = C30 +	MR2.Angle[leg][1];
+        break;
+    case 4:
+        MR2.OutPutAngle[leg][0] = T40 - MR2.Angle[leg][0];
+        MR2.OutPutAngle[leg][1] = C40 - MR2.Angle[leg][1];
+        break;
+
+    }
+}
+
+/**
+* @brief 下蹲运动
+* @param None
+* @retval None
+*/
+//void SquatRise(int n) {
+//    if(n == 1)
+//    {
+//        for(int i=0; i<4; i++)
+//        {
+//            calAngle(0,10,i);
+//            setAngle(i);
+//        }
+//        SendSignal();
+//        HAL_Delay(2000);
+//    }
+//    else
+//    {
+//        for(int i=0; i<4; i++)
+//        {
+//            calAngle(0,20,i);
+//            setAngle(i);
+//        }
+//        SendSignal();
+//        HAL_Delay(2000);
+
+//    }
+
+//}
+
+//更改2019/4/15
+void calAngle(double x,double h,int leg, int position)
+{
+    double angle1,angle3;
+    double tl = TIGHTLEN;
+    double cl = CALFLEN;
+    double l = sqrt(pow(h,2)+pow(x,2));
+
+    angle1= acos((pow(l,2)+pow(tl,2)-pow(cl,2))/(2*tl*l));
+    angle3= atan(x/h);
+
+    MR2.Angle[leg-1][position] = (angle1+angle3-PI/2)*180/PI;
+}
+//新增2019/4/15
+void calAngleDouble(double x,double h,int leg)
+{
+	calAngle(x,h,leg,0);
+	calAngle(SPACING-x,h,leg,1);
+}
